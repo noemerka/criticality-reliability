@@ -1,0 +1,22 @@
+#Virtual environments
+venv/
+criticality_env/
+# Large neuroimaging data
+data/
+surfaces/
+
+# CIFTI / NIfTI
+*.nii
+*.nii.gz
+*.dscalar.nii
+
+# Python
+__pycache__/
+*.pyc
+
+# VS Code
+.vscode/
+
+# Virtual environments
+venv/
+criticality_env/
