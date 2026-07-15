@@ -52,3 +52,8 @@ results/RQ4/
 results/subject_correlations.csv
 results/correlation_histogram.png
 results/group_t_thresh_*.png
+
+# Rohdaten - niemals ins Repository
+data/*.dscalar.nii
+data/*.nii
+data/*.nii.gz
