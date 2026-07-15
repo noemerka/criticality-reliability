@@ -1,22 +1,54 @@
-#Virtual environments
-venv/
-criticality_env/
-# Large neuroimaging data
-data/
-surfaces/
+# Rohdaten - nicht ins Repository
+gifti/
+swe_results/
 
-# CIFTI / NIfTI
-*.nii
-*.nii.gz
-*.dscalar.nii
+# Log-Dateien
+*.txt
+swe_log*
+step*.txt
 
-# Python
+# Temporäre MATLAB-Skripte (Entwicklungsversionen)
+run_swe.m
+run_swe_test.m
+run_swe_cifti_onesample_retest.m
+
+# Entwicklungsskripte (nicht finale Versionen)
+check_nans.py
+cifti_to_gifti.py
+
+# Python cache
 __pycache__/
 *.pyc
+*.pyo
 
-# VS Code
-.vscode/
+# Jupyter checkpoints
+.ipynb_checkpoints/
 
-# Virtual environments
-venv/
-criticality_env/
+# Alte Entwicklungsskripte (lokal behalten, nicht auf GitHub)
+scripts/01_inspect_data._14.07.26.py
+scripts/01_test-retest-correlation.py
+scripts/02_2_plot_correlations.py
+scripts/02_all-subject-correlations.py
+scripts/02_match_subjects._14.07.26.py
+scripts/03_compare_group_maps.py
+scripts/03_export_workbench_gifti.py
+scripts/03_group-t-maps.py
+scripts/04_compute_vertexwise_icc_new.py
+scripts/04_visualize.py
+scripts/05_compute_map_similarity_new.py
+scripts/05b_map_similarity_spearman.py
+scripts/06_compute_rank_order_continuity.py
+scripts/06_create_figures.py
+scripts/look-at-data.py
+scripts/test.py
+
+# 32k-Dateien (wb_view, werden automatisch generiert)
+*_32k.func.gii
+workbench_test/
+
+# Alte Ergebnis-Dateien
+results/*.dscalar.nii
+results/RQ4/
+results/subject_correlations.csv
+results/correlation_histogram.png
+results/group_t_thresh_*.png

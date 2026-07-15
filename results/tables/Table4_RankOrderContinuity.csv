@@ -1,0 +1,9 @@
+Region,Pearson r,Spearman ρ,"ICC(2,1)",N
+Whole Cortex,0.736,0.676,0.736,43
+Visual (VIS),0.767,0.674,0.762,43
+Somatomotor (SM),0.731,0.730,0.734,43
+Dorsal Attention (DAN),0.780,0.742,0.776,43
+Ventral Attention (VAN),0.706,0.683,0.708,43
+Limbic (LIM),0.761,0.720,0.755,43
+Frontoparietal (FPN),0.755,0.673,0.751,43
+Default Mode (DMN),0.720,0.718,0.722,43

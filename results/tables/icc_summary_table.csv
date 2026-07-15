@@ -1,0 +1,17 @@
+icc_type,measure,value
+"ICC(2,1)_absolute_agreement",n_valid_vertices,59412
+"ICC(2,1)_absolute_agreement",mean,0.6804080862943156
+"ICC(2,1)_absolute_agreement",median,0.7030624231491711
+"ICC(2,1)_absolute_agreement",min,-0.11104032012334103
+"ICC(2,1)_absolute_agreement",max,0.9628570046338397
+"ICC(2,1)_absolute_agreement",pct_above_0.4,95.7718979330775
+"ICC(2,1)_absolute_agreement",pct_above_0.6,72.86238470342691
+"ICC(2,1)_absolute_agreement",pct_above_0.75,37.569851208510066
+"ICC(3,1)_consistency",n_valid_vertices,59412
+"ICC(3,1)_consistency",mean,0.67993459133007
+"ICC(3,1)_consistency",median,0.7019009616231413
+"ICC(3,1)_consistency",min,-0.1145289215927198
+"ICC(3,1)_consistency",max,0.9635943498440246
+"ICC(3,1)_consistency",pct_above_0.4,95.78031374133172
+"ICC(3,1)_consistency",pct_above_0.6,72.62505891065778
+"ICC(3,1)_consistency",pct_above_0.75,37.347673870598534

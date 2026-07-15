@@ -1,0 +1,10 @@
+measure,value
+r_unthresholded_t,0.6656634982857154
+r_mean_maps,0.9375284044050174
+dice_thresholded,0.9933701657458563
+jaccard_top5pct,0.2485816347972263
+top5pct_n_vertices,2971
+top5pct_overlap_n,1183
+jaccard_top10pct,0.3155447298494243
+top10pct_n_vertices,5941
+top10pct_overlap_n,2850
