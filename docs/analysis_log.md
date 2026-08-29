@@ -102,6 +102,25 @@ in the thesis. **Open issue:** a systematic exclusion of vertices within a
 fixed distance of the medial wall from any peak-based analysis would be a
 useful addition if this pipeline is extended.
 
+## Traceability: thesis tables to source files
+
+The thesis presents a small number of tables that were assembled by
+combining values from already-existing, script-generated CSV outputs
+(no new computation), to match the exact table format suggested in the
+exposé:
+
+- **Thesis Table 4** (whole-map similarity, raw and demeaned) combines
+  `results/tables/whole_map_similarity_summary.csv` (script 13) and
+  `results/tables/whole_map_similarity_demeaned_summary.csv` (script 31).
+- **Thesis Table 5** (rank-order continuity, whole cortex + networks)
+  combines the whole-cortex row from
+  `results/tables/rank_order_continuity.csv` (script 14) with the
+  network rows from `results/tables/network_rank_continuity.csv`
+  (script 22).
+
+All other thesis tables correspond 1:1 to a single CSV output file
+(e.g. Table 2 = `icc_summary.csv`, Table 3 = `network_icc_qc.csv`).
+
 ## Reproducibility: random seeds
 
 This pipeline does not use random sampling, bootstrapping, or permutation
