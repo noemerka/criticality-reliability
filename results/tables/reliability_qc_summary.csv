@@ -1,0 +1,19 @@
+Metric,Value
+Cortical vertices,59412.0
+Valid ICC vertices,58435.0
+ICC NaN vertices,977.0
+ICC < 0 vertices,9.0
+ICC between 0 and 1,58426.0
+ICC > 1 vertices,0.0
+Valid test-retest map vertices,59412.0
+Mean test t,29.636151960768828
+Mean retest t,28.911363225171666
+Mean test-retest difference,0.724788735597164
+SD test-retest difference,3.5025506707867775
+Mean absolute test-retest difference,2.739227957222459
+Median absolute test-retest difference,2.1774168014526367
+Maximum absolute test-retest difference,22.457935333251953
+Pearson r,0.7506965341714751
+Pearson p,0.0
+Spearman rho,0.7508924618777815
+Spearman p,0.0

@@ -1,6 +1,0 @@
-Measure,Value
-"Spatial correlation, unthresholded t-maps",r = 0.666
-"Spatial correlation, group mean maps",r = 0.938
-"Dice coefficient, thresholded maps (FDR-WB p < .05)",D = 0.993
-"Jaccard index, Top-5% vertices (by t-value)",J = 0.249 (1183/2971)
-"Jaccard index, Top-10% vertices (by t-value)",J = 0.316 (2850/5941)

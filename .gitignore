@@ -1,59 +1,27 @@
-# Rohdaten - nicht ins Repository
-gifti/
-swe_results/
+# Data - never commit real participant data
+data/*
+!data/README_data.md
+!data/raw/
+!data/derivatives/
+data/raw/*
+data/derivatives/*
+!data/raw/.gitkeep
+!data/derivatives/.gitkeep
 
-# Log-Dateien
-*.txt
-swe_log*
-step*.txt
+# Superseded top-level pipeline copy (real code lives in scripts/ + src/)
+bachelor_pipeline/
 
-# Temporäre MATLAB-Skripte (Entwicklungsversionen)
-run_swe.m
-run_swe_test.m
-run_swe_cifti_onesample_retest.m
-
-# Entwicklungsskripte (nicht finale Versionen)
-check_nans.py
-cifti_to_gifti.py
-
-# Python cache
+# Python
 __pycache__/
 *.pyc
 *.pyo
-
-# Jupyter checkpoints
 .ipynb_checkpoints/
+venv/
+*.egg-info/
 
-# Alte Entwicklungsskripte (lokal behalten, nicht auf GitHub)
-scripts/01_inspect_data._14.07.26.py
-scripts/01_test-retest-correlation.py
-scripts/02_2_plot_correlations.py
-scripts/02_all-subject-correlations.py
-scripts/02_match_subjects._14.07.26.py
-scripts/03_compare_group_maps.py
-scripts/03_export_workbench_gifti.py
-scripts/03_group-t-maps.py
-scripts/04_compute_vertexwise_icc_new.py
-scripts/04_visualize.py
-scripts/05_compute_map_similarity_new.py
-scripts/05b_map_similarity_spearman.py
-scripts/06_compute_rank_order_continuity.py
-scripts/06_create_figures.py
-scripts/look-at-data.py
-scripts/test.py
+# OS / editor
+.DS_Store
+.vscode/
 
-# 32k-Dateien (wb_view, werden automatisch generiert)
-*_32k.func.gii
-workbench_test/
-
-# Alte Ergebnis-Dateien
-results/*.dscalar.nii
-results/RQ4/
-results/subject_correlations.csv
-results/correlation_histogram.png
-results/group_t_thresh_*.png
-
-# Rohdaten - niemals ins Repository
-data/*.dscalar.nii
-data/*.nii
-data/*.nii.gz
+# Environment backups made during cleanup
+results_OLD_*/
