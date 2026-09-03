@@ -27,13 +27,8 @@ rank-order continuity), including a breakdown by Yeo-7 functional network.
 
 ## Installation
 
-```bash
-conda env create -f environment.yml
-conda activate criticality-reliability
-```
-
-Or with pip (see `environment.yml` for the package list and pin versions
-using `pip freeze > environment.yml` once your environment is finalized):
+This project uses `pip` with a virtual environment. Exact package
+versions are pinned in `requirements.txt`.
 
 ```bash
 python -m venv venv
