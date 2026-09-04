@@ -27,8 +27,13 @@ rank-order continuity), including a breakdown by Yeo-7 functional network.
 
 ## Installation
 
-This project uses `pip` with a virtual environment. Exact package
-versions are pinned in `requirements.txt`.
+```bash
+conda env create -f environment.yml
+conda activate criticality-reliability
+```
+
+Or with pip (see `environment.yml` for the package list and pin versions
+using `pip freeze > environment.yml` once your environment is finalized):
 
 ```bash
 python -m venv venv
@@ -80,6 +85,7 @@ python -m scripts.30_check_data_completeness
 python -m scripts.31_demeaned_whole_map_similarity
 python -m scripts.32_group_mean_scatter
 python -m scripts.33_render_surfaces
+python -m scripts.34_signflip_permutation_robustness
 ```
 
 Scripts `04`, `05`, `19`, and `24` from earlier pipeline iterations were

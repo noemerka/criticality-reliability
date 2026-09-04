@@ -102,6 +102,21 @@ in the thesis. **Open issue:** a systematic exclusion of vertices within a
 fixed distance of the medial wall from any peak-based analysis would be a
 useful addition if this pipeline is extended.
 
+## Robustness check: non-parametric confirmation of group-level significance
+
+After the initial analysis, a non-parametric sign-flip permutation test
+(`scripts/34_signflip_permutation_robustness.py`) was added to check
+whether the near-ubiquitous group-level significance (Section 3.1 /
+`10_threshold_group_tmaps.py`) depends on the parametric assumptions of
+the classical one-sample t-test. This follows the exposé's explicitly
+suggested alternative ("an FSL-based one-sample permutation analysis
+with randomise"), implemented directly in Python rather than via FSL.
+2,000 sign-flip iterations were used per session, with Benjamini-Hochberg
+FDR correction applied to the resulting permutation p-values. Result:
+100% of testable cortical vertices remained significant in both
+sessions, exactly matching the parametric result. See Thesis Section
+4.5 for the interpretation.
+
 ## Traceability: thesis tables to source files
 
 The thesis presents a small number of tables that were assembled by
@@ -123,12 +138,9 @@ All other thesis tables correspond 1:1 to a single CSV output file
 
 ## Reproducibility: random seeds
 
-This pipeline does not use random sampling, bootstrapping, or permutation
-testing anywhere. All statistics (ICC, Pearson/Spearman correlations,
-one-sample t-tests, FDR correction, the hypergeometric overlap test) are
-exact, closed-form computations, so no random seed needs to be fixed. This
-was confirmed by reviewing every script for calls to `numpy.random`,
-`random`, or similar; none were found.
+With one exception, this pipeline does not use random sampling, bootstrapping, or permutation testing: all core statistics (ICC, Pearson/Spearman correlations, one-sample t-tests, FDR correction, the hypergeometric overlap test) are exact, closed-form computations, so no random seed needs to be fixed for them.
+
+The exception is `scripts/34_signflip_permutation_robustness.py`, a supplementary non-parametric robustness check (added after submission of the initial analysis) that uses a sign-flip permutation test (2,000 iterations) to verify the parametric group-level FDR result without relying on t-distribution assumptions. This script uses a fixed random seed (`RANDOM_SEED = 42`, via `numpy.random.default_rng`) so that its output is exactly reproducible. Result: 100% of testable cortical vertices remained significant after FDR correction in both sessions, matching the parametric result in `10_threshold_group_tmaps.py` exactly (see `docs/analysis_log.md` and Thesis Section 4.5).
 
 ## Methodological deviations from the exposé (summary)
 

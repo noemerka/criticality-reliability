@@ -1,0 +1,3 @@
+Session,Method,Testable vertices,Significant (uncorrected p < .05),Significant (FDR q < .05),Percent significant (uncorrected),Percent significant (FDR)
+Test,Sign-flip permutation (non-parametric),58811,58811,58811,100.0,100.0
+Retest,Sign-flip permutation (non-parametric),58839,58839,58839,100.0,100.0
