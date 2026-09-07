@@ -29,6 +29,12 @@ order.
   normal for surface-based fMRI data (individual differences in surface
   reconstruction near the medial wall) and not a data-quality concern at
   this magnitude.
+- ICC implementation validation: `scripts/04_test_icc.py` and
+  `scripts/05_validate_icc.py` are standalone scripts validating the
+  custom ICC(2,1) implementation against the `pingouin` package (see
+  Methods Section 2.6); they are not part of the main sequential
+  pipeline, since they check code correctness rather than produce
+  thesis outputs.
 
 ## Bugs found and fixed during development
 
@@ -79,12 +85,16 @@ order.
 
 - `04_group_correlation.py` - superseded by `18_group_mean_correlation.py`,
   which adds correct cortical masking. Removed.
-- `05_vertexwise_icc.py` - empty (0-byte) duplicate of
-  `06_vertexwise_icc.py`. Removed.
+- `04_test_icc.py`, `05_validate_icc.py` - standalone scripts validating
+  the custom ICC(2,1) implementation against the `pingouin` package
+  (see Methods Section 2.6); not part of the main sequential pipeline,
+  since they check code correctness rather than produce thesis outputs.
 - `19_top_percent_overlap.py`, `24_top_overlap_chance.py` - early
   iterations of the top-X% overlap analysis, superseded by
   `25_criticality_overlap_chance.py` (correct cortical masking + a
   hypergeometric significance test against chance overlap). Removed.
+
+
 
 ## Known artifact: medial-wall boundary peak
 
