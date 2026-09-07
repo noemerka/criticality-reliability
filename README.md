@@ -86,6 +86,7 @@ python -m scripts.31_demeaned_whole_map_similarity
 python -m scripts.32_group_mean_scatter
 python -m scripts.33_render_surfaces
 python -m scripts.34_signflip_permutation_robustness
+python -m scripts.35_icc21_vs_icc31_comparison
 ```
 
 Scripts `04`, `05`, `19`, and `24` from earlier pipeline iterations were

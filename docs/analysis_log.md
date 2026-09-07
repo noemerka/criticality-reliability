@@ -127,6 +127,16 @@ FDR correction applied to the resulting permutation p-values. Result:
 sessions, exactly matching the parametric result. See Thesis Section
 4.5 for the interpretation.
 
+## Secondary ICC comparison: absolute agreement vs. consistency
+
+As suggested by the exposé ("consistency-based ICC can also be informative
+if feasible"), the consistency-based ICC(3,1) was additionally computed
+(`scripts/35_icc21_vs_icc31_comparison.py`) and compared against the
+primary absolute-agreement ICC(2,1). Result: mean ICC(3,1) = .681 vs.
+mean ICC(2,1) = .682, r = .999 between the two forms across vertices,
+mean absolute difference = .004. See Thesis Section 4.3 for the
+interpretation.
+
 ## Traceability: thesis tables to source files
 
 The thesis presents a small number of tables that were assembled by

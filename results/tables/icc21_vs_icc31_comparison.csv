@@ -1,0 +1,8 @@
+Metric,Value
+Valid vertices,58435.0
+"Mean ICC(2,1)",0.6818
+"Mean ICC(3,1)",0.6813
+"Median ICC(2,1)",0.7046
+"Median ICC(3,1)",0.7034
+"Pearson r between ICC(2,1) and ICC(3,1) across vertices",0.9992
+"Mean absolute difference |ICC(2,1) - ICC(3,1)|",0.0042
