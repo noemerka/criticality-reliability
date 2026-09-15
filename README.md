@@ -1,39 +1,26 @@
 # Test-retest reliability of functional criticality
 
-## Project summary
-
-This repository contains the analysis code for a Bachelor's thesis evaluating
-the test-retest reliability of vertex-wise functional criticality (vIFC) maps
-in the Human Connectome Project (HCP) test-retest sample. Reliability is
-assessed at four levels: group-level significance and replication, vertex-wise
-reliability (ICC), and individual-level stability (whole-map similarity and
-rank-order continuity), including a breakdown by Yeo-7 functional network.
+Code for a Bachelor's thesis evaluating the test-retest reliability of
+vertex-wise functional criticality (vIFC) in the HCP test-retest
+sample. Reliability is assessed at four levels: group-level
+significance and replication, vertex-wise reliability (ICC), and
+individual-level stability (whole-map similarity and rank-order
+continuity), including a breakdown by Yeo-7 functional network.
 
 ## Data
 
-- **Source:** HCP test-retest resting-state fMRI, pre-computed vertex-wise
-  Index of Functional Criticality (vIFC) maps (Jiang et al., 2019), provided
-  by Alina Podschun (Markett Lab).
-- **Participants:** N = 43, two sessions each (test, retest).
-- **Format:** CIFTI dscalar files (`.dscalar.nii`), 91,282 grayordinates
-  (59,412 cortical vertices in fsLR32k space + 31,870 subcortical voxels,
-  the latter zero-filled since vIFC is a cortical-only measure).
-- **Surface geometry:** HCP S1200 group-average midthickness surfaces
-  (`S1200.{L,R}.midthickness_MSMAll.32k_fs_LR.surf.gii`), used for surface
-  rendering only, not part of the vIFC computation itself.
-- Raw criticality maps are not redistributed in this repository; see
-  `data/README_data.md` for the expected directory layout and how to point
-  the pipeline at your own copy of the data.
+HCP test-retest resting-state fMRI, pre-computed vIFC maps (Jiang et
+al., 2019). 43 participants, two sessions each. CIFTI dscalar files,
+91,282 grayordinates (59,412 cortical in fsLR32k space, the remainder
+subcortical and zero-filled). Surface rendering (script 33) uses the
+HCP S1200 group-average midthickness surfaces, independent of the
+vIFC computation itself.
+
+Raw maps are not included in this repository; see
+`data/README_data.md` for the expected directory layout and for
+pointing the pipeline at an independently obtained copy of the data.
 
 ## Installation
-
-```bash
-conda env create -f environment.yml
-conda activate criticality-reliability
-```
-
-Or with pip (see `environment.yml` for the package list and pin versions
-using `pip freeze > environment.yml` once your environment is finalized):
 
 ```bash
 python -m venv venv
@@ -41,24 +28,31 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### Required environment variables
-
-The pipeline reads all data paths from environment variables instead of
-hard-coded paths (see `src/config.py`):
+Data paths are read from environment variables rather than
+hard-coded (see `src/config.py`):
 
 ```bash
 export CRITICALITY_DATA=/path/to/hcp_test_retest_maps
-export CRITICALITY_SURFACES=/path/to/surfaces   # Yeo labels + fsLR32k surfaces
+export CRITICALITY_SURFACES=/path/to/surfaces
 ```
+
+`CRITICALITY_DATA` requires `hcp_test/` and `hcp_retest/` subfolders
+(exact file naming in `data/README_data.md`); `CRITICALITY_SURFACES`
+requires the Yeo label file and the two S1200 surface files.
 
 ## Reproducing the analysis
 
-Run the scripts from the repository root, in the following order:
+Run the scripts from the repository root, in the following order.
+Scripts `04`, `05`, and `29` are standalone ICC-validation checks
+rather than part of the main pipeline (see `docs/analysis_log.md`),
+but are listed here for completeness.
 
 ```bash
 python -m scripts.01_check_dataset
 python -m scripts.02_group_mean
 python -m scripts.03_group_sd
+python -m scripts.04_test_icc
+python -m scripts.05_validate_icc
 python -m scripts.06_vertexwise_icc
 python -m scripts.07_icc_histogram
 python -m scripts.08_export_statistics
@@ -89,45 +83,47 @@ python -m scripts.34_signflip_permutation_robustness
 python -m scripts.35_icc21_vs_icc31_comparison
 ```
 
-Scripts `04`, `05`, `19`, and `24` from earlier pipeline iterations were
-removed as superseded/empty; see `docs/analysis_log.md` for details.
+Scripts `19` and `24` from earlier pipeline iterations were removed as
+superseded; see `docs/analysis_log.md` for details. `rerun_all.sh`
+runs the full sequence above (excluding the standalone `04`/`05`
+checks) and logs the output.
 
 ## Outputs
 
-- **`results/maps/`** — group-level CIFTI maps: mean, SD, and one-sample
-  t-maps per session (unthresholded and FDR-thresholded), vertex-wise
-  ICC(2,1) map, FDR q-value maps.
-- **`results/tables/`** — summary statistics for group-map replication
-  (mean-map and t-map correlation, top-5%/10% overlap, Dice), vertex-wise
-  and network-wise ICC summaries, whole-map similarity (raw and demeaned),
-  rank-order continuity (whole-cortex and per network), data-completeness
-  diagnostics.
-- **`results/figures/`** — scatterplots (group mean-map and t-map
-  replication, rank-order), histograms (ICC distribution, whole-map
-  similarity), and cortical surface renderings (group maps, thresholded
-  t-maps, ICC map) produced directly from CIFTI + surface geometry via
-  `scripts/33_render_surfaces.py`.
+- `results/maps/` — group mean, SD, and one-sample t-maps per session
+  (unthresholded and FDR-thresholded, with q-value maps), and the
+  vertex-wise ICC(2,1) map.
+- `results/tables/` — group-map replication statistics (correlations,
+  top-5%/10% overlap with a hypergeometric enrichment test, Dice
+  coefficient), vertex-wise and network-level ICC summaries (including
+  the ICC(2,1) vs. ICC(3,1) comparison), whole-map similarity (raw and
+  demeaned), rank-order continuity, data-completeness diagnostics, and
+  supporting QC tables.
+- `results/figures/` — scatterplots, histograms, and cortical surface
+  renderings, produced directly from CIFTI and surface geometry via
+  `scripts/33_render_surfaces.py` rather than manual screenshots.
 
 ## Notes
 
-- **Random seeds:** this pipeline is fully deterministic. No step relies on
-  random sampling, bootstrapping, or permutation testing (ICC, Pearson/
-  Spearman correlations, the one-sample t-tests, FDR correction, and the
-  hypergeometric overlap test are all exact, closed-form computations).
-  There is therefore no random seed to fix; this is a deliberate design
-  choice rather than an oversight.
-- **Sample size:** N = 43 participants were available and used throughout,
-  differing from the N = 37 specified in the exposé; the source of this
-  discrepancy was not resolved within the scope of this project.
-- **Group-level significance is near-ubiquitous:** group t-values are large
-  across almost the entire cortex (14.2–59.4), so FDR-thresholded maps
-  retain ~99–100% of testable vertices in both sessions. This is reported
-  as a substantive finding, not a thresholding error; the top-5%/10%
-  vertex-overlap analysis is the primary spatial-specificity measure for
-  group-map replication (see `docs/analysis_log.md`).
-- **Known artifact:** a highly localized peak in the group mean map, near
-  the cortical midline, was traced to the medial-wall mask boundary rather
-  than a genuine neurobiological effect (see `docs/analysis_log.md`).
-- Vertex-wise ICC and related analyses are restricted to the 58,435 / 59,412
-  (98.4%) cortical vertices with complete data from all 43 participants in
-  both sessions.
+This pipeline is deterministic except for
+`scripts/34_signflip_permutation_robustness.py`, which uses a fixed
+random seed (42) for its sign-flip permutation test.
+
+N = 43 participants were available throughout, differing from the
+N = 37 specified in the exposé; the source of this discrepancy was
+not resolved within the scope of this project.
+
+Group-level significance after FDR correction is close to 100% of
+testable vertices in both sessions, reflecting the very large effect
+sizes in this dataset rather than a thresholding issue; the
+top-5%/10% vertex-overlap analysis (script 25) is used as the primary
+measure of spatial specificity for group-map replication (see
+`docs/analysis_log.md`).
+
+A highly localized peak in the group mean map, near the cortical
+midline, was traced to the medial-wall mask boundary rather than a
+neurobiological effect (see `docs/analysis_log.md`).
+
+Vertex-wise ICC and related complete-case analyses are restricted to
+the 58,435 of 59,412 (98.4%) cortical vertices with complete data from
+all 43 participants in both sessions.
